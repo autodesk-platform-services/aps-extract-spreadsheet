@@ -1,4 +1,5 @@
 # viewer-javascript-extract.spreadsheet
+
 JavaScript sample to extract Revit files from [Model Derivative API](https://developer.autodesk.com/en/docs/model-derivative/v2) as Spreadsheet (Excel XLSX)
 
 [![Viewer](https://img.shields.io/badge/Viewer-v7-green.svg)](http://developer.autodesk.com/)
@@ -15,7 +16,7 @@ This sample uses Model Derivative API endpoints to read a Revit project properti
 
 Run it live at [this page](https://viewerxls.autodesk.io), or locally by following these steps:
 
-- create a Forge application if you don't have one yet ([tutorial](https://forge.autodesk.com/en/docs/oauth/v2/tutorials/create-app/))
+- create an APS application if you don't have one yet ([tutorial](https://forge.autodesk.com/en/docs/oauth/v2/tutorials/create-app/))
 - make sure you have at least one file prepared for viewing ([tutorial](https://forge.autodesk.com/en/docs/model-derivative/v2/tutorials/prep-file4viewer/))
 - clone this git repository
 - navigate to the repository root folder and install npm dependencies
@@ -23,15 +24,15 @@ Run it live at [this page](https://viewerxls.autodesk.io), or locally by followi
 - prepare required environment variables
   - on Windows:
     ```
-    set FORGE_CLIENT_ID=<your client id>
-    set FORGE_CLIENT_SECRET=<your client secret>
-    set FORGE_BUCKET=<your data bucket>
+    set APS_CLIENT_ID=<your client id>
+    set APS_CLIENT_SECRET=<your client secret>
+    set APS_BUCKET=<your data bucket>
     ```
   - on macOS/Linux:
     ```
-    export FORGE_CLIENT_ID=<your client id>
-    export FORGE_CLIENT_SECRET=<your client secret>
-    export FORGE_BUCKET=<your data bucket>
+    export APS_CLIENT_ID=<your client id>
+    export APS_CLIENT_SECRET=<your client secret>
+    export APS_BUCKET=<your data bucket>
     ```
 - run the application
   - on Windows/macOS/Linux: `npm run dev`
@@ -39,17 +40,17 @@ Run it live at [this page](https://viewerxls.autodesk.io), or locally by followi
 
 # Usage
 
-Add reference to the ForgeXLS file:
+Add reference to the ExtractXLS file:
 
 ```
-<script src="ForgeXLS.js"></script>
+<script src="ExtractXLS.js"></script>
 ```
 
 Then call **downloadXLSX** method passing the URN and a data:read token.
 
 ```
 function downloadExcel() {
-   ForgeXLS.downloadXLS(theURN, token, statusCallback /*Optional*/);
+   ExtractXLS.downloadXLS(theURN, token, statusCallback /*Optional*/);
 }
 ```
 
@@ -71,4 +72,4 @@ Please see the [LICENSE](LICENSE) file for full details.
 
 ## Written by
 
-Augusto Goncalves [@augustomaia](https://twitter.com/augustomaia), [Forge Partner Development](http://forge.autodesk.com)
+Augusto Goncalves [@augustomaia](https://twitter.com/augustomaia), [APS Partner Development](http://aps.autodesk.com)

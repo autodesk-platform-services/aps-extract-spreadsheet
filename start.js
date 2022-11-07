@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////
 // Copyright (c) Autodesk, Inc. All rights reserved
-// Written by Forge Partner Development
+// Written by APS Partner Development
 //
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted,
@@ -19,15 +19,16 @@
 const path = require('path');
 const express = require('express');
 
-if (process.env.FORGE_CLIENT_ID == null || process.env.FORGE_CLIENT_SECRET == null) {
-  console.log('*****************\nWARNING: Client ID & Client Secret not defined as environment variables.\n*****************');
+if (process.env.APS_CLIENT_ID == null || process.env.APS_CLIENT_SECRET == null || process.env.APS_BUCKET == null) {
+    console.error('Some of the required environment variables are missing.');
+    process.exit(1);
 }
 
 let app = express();
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.set('port', process.env.PORT || 3000);
-app.use('/', require('./routes/forge'));
+app.use(require('./routes/api.js'));
 let server = app.listen(app.get('port'), function () {
-  console.log('Starting at ' + (new Date()).toString());
-  console.log('Server listening on port ' + server.address().port);
+    console.log('Starting at ' + (new Date()).toString());
+    console.log('Server listening on port ' + server.address().port);
 });

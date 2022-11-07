@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////
 // Copyright (c) Autodesk, Inc. All rights reserved
-// Written by Forge Partner Development
+// Written by APS Partner Development
 //
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted,
@@ -24,10 +24,10 @@ let viewer;
 function showModel(urn) {
   const options = {
     env: 'AutodeskProduction',
-    getAccessToken: getForgeToken
+    getAccessToken: getAccessToken
   };
   Autodesk.Viewing.Initializer(options, function () {
-    viewer = new Autodesk.Viewing.Private.GuiViewer3D(document.getElementById('forgeViewer'), {});
+    viewer = new Autodesk.Viewing.Private.GuiViewer3D(document.getElementById('viewer'), {});
     viewer.start();
     Autodesk.Viewing.Document.load('urn:' + urn, onDocumentLoadSuccess, onDocumentLoadFailure);
   });

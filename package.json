@@ -1,18 +1,18 @@
 {
-  "name": "viewer-javascript-extract.xls",
+  "name": "aps-extract-spreadsheet",
   "version": "1.0.0",
   "description": "JavaScript sample to extract Revit files properties as Spreadsheet (Excel XLSX)",
   "main": "start.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/autodesk-forge/viewer-javascript-extract.spreadsheet"
+    "url": "git://github.com/autodesk-platform-services/aps-extract-spreadsheet"
   },
   "scripts": {
     "start": "NODE_ENV=production node start.js",
     "dev": "node start.js",
     "nodemon": "nodemon start.js --ignore public/"
   },
-  "author": "Forge Partner Development",
+  "author": "APS Partner Development",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",

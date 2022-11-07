@@ -43,4 +43,5 @@ jspm_packages
 .idea
 
 # vscode files
-.vscode/
+.vscode
+.env

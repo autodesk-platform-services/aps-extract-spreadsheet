@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////
 // Copyright (c) Autodesk, Inc. All rights reserved
-// Written by Forge Partner Development
+// Written by APS Partner Development
 //
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted,
@@ -19,14 +19,14 @@
 if (!window.jQuery) alert('jQuery is required for this sample');
 if (!window.XLSX) alert('Sheet JS is required for this sample');
 
-var ForgeXLS = {
+var ExportXLS = {
   Utility: {
     Constants: {
       BASE_URL: 'https://developer.api.autodesk.com',
       MODEL_DERIVATIVE_V2: '/modelderivative/v2/designdata/'
     },
 
-    forgeGetRequest: function (url, token, callback) {
+    request: function (url, token, callback) {
       jQuery.ajax({
         url: url,
         beforeSend: function (request) {
@@ -36,7 +36,7 @@ var ForgeXLS = {
           if (response.result && response.result === 'success') {
             setTimeout(function () {
               console.log('Data not ready... retry in 1 second');
-              ForgeXLS.Utility.forgeGetRequest(url, token, callback);
+              ExportXLS.Utility.request(url, token, callback);
             }, 1000);
             return;
           }
@@ -47,17 +47,17 @@ var ForgeXLS = {
     },
     getMetadata: function (urn, token, callback) {
       console.log('Downloading metadata...');
-      this.forgeGetRequest(this.Constants.BASE_URL + this.Constants.MODEL_DERIVATIVE_V2 + urn + '/metadata', token, callback);
+      this.request(this.Constants.BASE_URL + this.Constants.MODEL_DERIVATIVE_V2 + urn + '/metadata', token, callback);
     },
 
     getHierarchy: function (urn, guid, token, callback) {
       console.log('Downloading hierarchy...');
-      this.forgeGetRequest(this.Constants.BASE_URL + this.Constants.MODEL_DERIVATIVE_V2 + urn + '/metadata/' + guid, token, callback);
+      this.request(this.Constants.BASE_URL + this.Constants.MODEL_DERIVATIVE_V2 + urn + '/metadata/' + guid, token, callback);
     },
 
     getProperties: function (urn, guid, token, callback) {
       console.log('Downloading properties...');
-      this.forgeGetRequest(this.Constants.BASE_URL + this.Constants.MODEL_DERIVATIVE_V2 + urn + '/metadata/' + guid + '/properties', token, callback);
+      this.request(this.Constants.BASE_URL + this.Constants.MODEL_DERIVATIVE_V2 + urn + '/metadata/' + guid + '/properties', token, callback);
     }
   },
 
@@ -79,7 +79,7 @@ var ForgeXLS = {
       var wb = new Workbook();
       jQuery.each(tables, function (name, table) {
         if (name.indexOf('<')==-1) { // skip tables starting with <
-          var ws = ForgeXLS.sheetFromTable(table);
+          var ws = ExportXLS.sheetFromTable(table);
           wb.SheetNames.push(name);
           wb.Sheets[name] = ws;
         }
@@ -162,9 +162,9 @@ var ForgeXLS = {
       }
       var guid = metadata.data.metadata[0].guid;
 
-      ForgeXLS.Utility.getHierarchy(urn, guid, token, function (hierarchy) {
-        ForgeXLS.Utility.getProperties(urn, guid, token, function (properties) {
-          callback(ForgeXLS.prepareRawData(hierarchy, properties));
+      ExportXLS.Utility.getHierarchy(urn, guid, token, function (hierarchy) {
+        ExportXLS.Utility.getProperties(urn, guid, token, function (properties) {
+          callback(ExportXLS.prepareRawData(hierarchy, properties));
         });
       });
     });
@@ -174,11 +174,11 @@ var ForgeXLS = {
     var tables = {};
     hierarchy.data.objects[0].objects.forEach(function (category) {
       var idsOnCategory = [];
-      ForgeXLS.getAllElementsOnCategory(idsOnCategory, category.objects);
+      ExportXLS.getAllElementsOnCategory(idsOnCategory, category.objects);
 
       var rows = [];
       idsOnCategory.forEach(function (objectid) {
-        var columns = ForgeXLS.getProperties(objectid, properties);
+        var columns = ExportXLS.getProperties(objectid, properties);
         rows.push(columns);
       });
       tables[category.name] = rows;
@@ -193,7 +193,7 @@ var ForgeXLS = {
           ids.push(item.objectid);
       }
       else
-        ForgeXLS.getAllElementsOnCategory(ids, item.objects);
+        ExportXLS.getAllElementsOnCategory(ids, item.objects);
     });
   },
 

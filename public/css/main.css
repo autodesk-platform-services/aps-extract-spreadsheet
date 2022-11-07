@@ -16,7 +16,7 @@ body {
     padding: 15px;
 }
 
-#forgeViewer {
+#viewer {
     display: block;
     position: absolute;
     height: auto;

@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////
 // Copyright (c) Autodesk, Inc. All rights reserved
-// Written by Forge Partner Development
+// Written by APS Partner Development
 //
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted,
@@ -21,10 +21,10 @@
 module.exports = {
   // set enviroment variables or hard-code here
   credentials: {
-    client_id: process.env.FORGE_CLIENT_ID || '<replace with your consumer key>',
-    client_secret: process.env.FORGE_CLIENT_SECRET || '<replace with your consumer secret>',
+    client_id: process.env.APS_CLIENT_ID || '<replace with your consumer key>',
+    client_secret: process.env.APS_CLIENT_SECRET || '<replace with your consumer secret>',
   },
-  bucket: process.env.FORGE_BUCKET,
+  bucket: process.env.APS_BUCKET,
   // Required scopes for your application on server-side
   scopeInternal: 'data:read data:write data:create data:search bucket:create bucket:read bucket:update bucket:delete',
   // Required scope of the token sent to the client

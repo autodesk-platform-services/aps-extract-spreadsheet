@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////
 // Copyright (c) Autodesk, Inc. All rights reserved
-// Written by Forge Partner Development
+// Written by APS Partner Development
 //
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted,
@@ -32,7 +32,7 @@ let auth = new AuthenticationClient(config.credentials.client_id, config.credent
 let data = new DataManagementClient(config.credentials);
 let deriv = new ModelDerivativeClient(config.credentials);
 
-router.get('/forge/oauth/token', async function (req, res) {
+router.get('/auth/token', async function (req, res) {
   const token = await auth.authenticate(config.scopePublic.split(' '));
   res.json({
     access_token: token.access_token,
@@ -40,7 +40,7 @@ router.get('/forge/oauth/token', async function (req, res) {
   });
 });
 
-router.get('/forge/models', async function (req, res) {
+router.get('/models', async function (req, res) {
   let results = [];
   const buckets = await data.listBuckets();
   for (const bucket of buckets) {
@@ -58,7 +58,7 @@ router.get('/forge/models', async function (req, res) {
   res.json(results);
 });
 
-router.get('/forge/initialsetup', async function (req, res) {
+router.get('/initialsetup', async function (req, res) {
   const buff = fs.readFileSync(path.join(__dirname, '..', 'samples', 'rac_advanced_sample_project.rvt'));
   const obj = await data.uploadObject(config.bucket, 'racadvanced.rvt', 'application/octet-stream', buff);
   const job = await deriv.submitJob(obj.objectId.toBase64(), [{ type: 'svf', views: ['2d', '3d'] }]);
