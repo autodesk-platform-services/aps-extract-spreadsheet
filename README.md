@@ -40,17 +40,17 @@ Run it live at [this page](https://viewerxls.autodesk.io), or locally by followi
 
 # Usage
 
-Add reference to the ExtractXLS file:
+Add reference to the ExportXLS file:
 
 ```
-<script src="ExtractXLS.js"></script>
+<script src="ExportXLS.js"></script>
 ```
 
 Then call **downloadXLSX** method passing the URN and a data:read token.
 
 ```
 function downloadExcel() {
-   ExtractXLS.downloadXLS(theURN, token, statusCallback /*Optional*/);
+   ExportXLS.downloadXLS(theURN, token, statusCallback /*Optional*/);
 }
 ```
 
