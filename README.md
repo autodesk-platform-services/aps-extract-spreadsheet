@@ -1,4 +1,4 @@
-# viewer-javascript-extract.spreadsheet
+# aps-extract-spreadsheet
 
 JavaScript sample to extract Revit files from [Model Derivative API](https://developer.autodesk.com/en/docs/model-derivative/v2) as Spreadsheet (Excel XLSX)
 
