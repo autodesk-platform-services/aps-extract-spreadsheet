@@ -47,11 +47,13 @@ router.get('/models', async function (req, res) {
     if (bucket.bucketKey === config.bucket) {
       const objects = await data.listObjects(bucket.bucketKey);
       for (const obj of objects) {
-        results.push({
-          id: obj.objectKey.split('.')[0],
-          label: obj.objectKey,
-          urn: obj.objectId.toBase64()
-        });
+        if (obj.objectKey.endsWith('.rvt')) {
+          results.push({
+            id: obj.objectKey.split('.')[0],
+            label: obj.objectKey,
+            urn: obj.objectId.toBase64()
+          });
+        }
       }
     }
   }
