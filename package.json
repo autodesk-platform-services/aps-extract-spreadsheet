@@ -8,14 +8,17 @@
     "url": "git://github.com/autodesk-platform-services/aps-extract-spreadsheet"
   },
   "scripts": {
-    "start": "NODE_ENV=production node start.js",
-    "dev": "node start.js",
-    "nodemon": "nodemon start.js --ignore public/"
+    "start": "node start.js"
   },
   "author": "APS Partner Development",
   "license": "MIT",
   "dependencies": {
+    "@aps_sdk/authentication": "^0.1.0-beta.1",
+    "@aps_sdk/autodesk-sdkmanager": "^0.0.7-beta.1",
+    "@aps_sdk/model-derivative": "^0.1.0-beta.1",
+    "@aps_sdk/oss": "^0.1.0-beta.1",
+    "dotenv": "^16.4.5",
     "express": "^4.17.1",
-    "forge-server-utils": "^8.3.2"
+    "express-formidable": "^1.2.0"
   }
 }
