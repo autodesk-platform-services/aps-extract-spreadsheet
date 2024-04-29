@@ -65,7 +65,7 @@
     // you should replace this with your own Token endpoint
     function getAccessToken(callback) {
       jQuery.ajax({
-        url: '/auth/token',
+        url: 'api/auth/token',
         success: function (oauth) {
           if (callback)
             callback(oauth.access_token, oauth.expires_in);

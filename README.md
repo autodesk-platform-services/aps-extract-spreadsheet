@@ -8,7 +8,7 @@ JavaScript sample to extract Revit files from [Model Derivative API](https://dev
 
 # Description
 
-This sample uses Model Derivative API endpoints to read a Revit project properties and create a XLSX Excel file with one sheet for each type/category with all objects on it. Non-Revit files are not supported (different structure). [Here is another version](https://github.com/Autodesk-Forge/model.derivative-csharp-context.menu) for desktop.
+This sample uses Model Derivative API endpoints to read a Revit project properties and create a XLSX Excel file with one sheet for each type/category with all objects on it. Non-Revit files are not supported (different structure). [Here is another version](https://github.com/autodesk-platform-services/model.derivative-csharp-context.menu) for desktop.
 
 ![thumbnail](/thumbnail.png)
 
@@ -16,8 +16,8 @@ This sample uses Model Derivative API endpoints to read a Revit project properti
 
 Run it live at [this page](https://viewerxls.autodesk.io), or locally by following these steps:
 
-- create an APS application if you don't have one yet ([tutorial](https://forge.autodesk.com/en/docs/oauth/v2/tutorials/create-app/))
-- make sure you have at least one file prepared for viewing ([tutorial](https://forge.autodesk.com/en/docs/model-derivative/v2/tutorials/prep-file4viewer/))
+- create an APS application if you don't have one yet ([tutorial](https://aps.autodesk.com/en/docs/oauth/v2/tutorials/create-app/))
+- make sure you have at least one file prepared for viewing ([tutorial](https://aps.autodesk.com/en/docs/model-derivative/v2/tutorials/prep-file4viewer/))
 - clone this git repository
 - navigate to the repository root folder and install npm dependencies
   - on Windows/macOS/Linux: `npm install`

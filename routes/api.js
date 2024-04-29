@@ -23,38 +23,27 @@ String.prototype.toBase64 = function () {
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
-const { AuthenticationClient, DataManagementClient, ModelDerivativeClient } = require('forge-server-utils');
-
-const config = require('../config');
-
+const { getPublicToken, listObjects } = require('../services/aps.js');
 let router = express.Router();
-let auth = new AuthenticationClient(config.credentials.client_id, config.credentials.client_secret);
-let data = new DataManagementClient(config.credentials);
-let deriv = new ModelDerivativeClient(config.credentials);
 
-router.get('/auth/token', async function (req, res) {
-  const token = await auth.authenticate(config.scopePublic.split(' '));
-  res.json({
-    access_token: token.access_token,
-    expires_in: token.expires_in
-  });
+router.get('/api/auth/token', async function (req, res, next) {
+    try {
+        res.json(await getPublicToken());
+    } catch (err) {
+        next(err);
+    }
 });
 
 router.get('/models', async function (req, res) {
   let results = [];
-  const buckets = await data.listBuckets();
-  for (const bucket of buckets) {
-    if (bucket.bucketKey === config.bucket) {
-      const objects = await data.listObjects(bucket.bucketKey);
-      for (const obj of objects) {
-        if (obj.objectKey.endsWith('.rvt')) {
-          results.push({
-            id: obj.objectKey.split('.')[0],
-            label: obj.objectKey,
-            urn: obj.objectId.toBase64()
-          });
-        }
-      }
+  const objects = await listObjects();
+  for (const obj of objects) {
+    if (obj.objectKey.endsWith('.rvt')) {
+      results.push({
+        id: obj.objectKey.split('.')[0],
+        label: obj.objectKey,
+        urn: obj.objectId.toBase64()
+      });
     }
   }
   res.json(results);
